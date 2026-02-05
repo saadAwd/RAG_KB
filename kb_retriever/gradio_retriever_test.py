@@ -181,7 +181,7 @@ class RetrieverTester:
                 print(f"[INFO] Updating alpha from {self.retriever.alpha} to {alpha}")
                 self.retriever.alpha = alpha
     
-    def initialize_rag(self, alpha: float = 0.4, rerank_threshold: float = 0.1):
+    def initialize_rag(self, alpha: float = 0.8, rerank_threshold: float = 0.6):
         """Initialize the RAG pipeline (retriever + generator)."""
         if not self._rag_initialized or self.rag_pipeline is None:
             print(f"[INFO] Initializing RAG Pipeline (this may take a few minutes)...")
@@ -463,14 +463,14 @@ def create_gradio_interface():
                     rag_alpha_slider = gr.Slider(
                         minimum=0.0,
                         maximum=1.0,
-                        value=0.4,
+                        value=0.8,
                         step=0.1,
                         label="Alpha (0=all dense, 1=all sparse)"
                     )
                     rerank_threshold_slider = gr.Slider(
                         minimum=0.0,
                         maximum=1.0,
-                        value=0.1,
+                        value=0.6,
                         step=0.05,
                         label="Rerank threshold (0–1, vs sigmoid of reranker; use KB when max > this)"
                     )

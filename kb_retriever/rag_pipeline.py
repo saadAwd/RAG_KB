@@ -21,7 +21,7 @@ class RAGPipeline:
         self,
         retriever: HybridKBRetriever,
         generator: RAGGenerator,
-        rerank_threshold: float = 0.1,
+        rerank_threshold: float = 0.6,
         max_context_chunks: int = 3,
     ):
         """
@@ -30,7 +30,7 @@ class RAGPipeline:
         Args:
             retriever: HybridKBRetriever instance
             generator: RAGGenerator instance
-            rerank_threshold: Minimum reranker score to use KB context (default: 0.1)
+            rerank_threshold: Minimum reranker score to use KB context (default: 0.6)
             max_context_chunks: Maximum number of chunks to use for generation (default: 3)
         """
         self.retriever = retriever
@@ -44,7 +44,7 @@ class RAGPipeline:
         self,
         query: str,
         top_k: int = 5,
-        alpha: float = 0.4,
+        alpha: float = 0.8,
         rerank: bool = True,
         max_new_tokens: int = 150,
         temperature: float = 0.7,
@@ -181,11 +181,11 @@ class RAGPipeline:
     @classmethod
     def build(
         cls,
-        retriever_alpha: float = 0.4,
+        retriever_alpha: float = 0.8,
         retriever_use_cpu: bool = None,
         generator_device: str = None,
         generator_load_in_4bit: bool = None,
-        rerank_threshold: float = 0.1,
+        rerank_threshold: float = 0.6,
         max_context_chunks: int = 3,
     ) -> "RAGPipeline":
         """

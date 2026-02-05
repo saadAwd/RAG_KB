@@ -488,8 +488,8 @@ def main():
                        help='Only run config 5 (RAG) and update existing results')
     parser.add_argument('--tsv-test', action='store_true',
                        help='Use TSV test files (Subtask3_input_test and Subtask3_output_test)')
-    parser.add_argument('--rerank-threshold', type=float, default=0.15,
-                       help='RAG: use KB when max(sigmoid(reranker_raw)) > this; scale 0–1 (default 0.15). Try 0.25–0.5 to use KB less.')
+    parser.add_argument('--rerank-threshold', type=float, default=0.6,
+                       help='RAG: use KB when max(sigmoid(reranker_raw)) > this; scale 0–1 (default 0.6).')
     parser.add_argument('--rag-top-k', type=int, default=3, help='RAG: number of chunks to retrieve (default 3)')
     parser.add_argument('--rag-alpha', type=float, default=0.8, help='RAG: hybrid retrieval alpha, 0=dense 1=sparse (default 0.8)')
     args = parser.parse_args()
@@ -502,15 +502,15 @@ def main():
         print("⚠️  MODE: Skipping fine-tuned configs (testing base model only)")
     if args.max_questions:
         print(f"⚠️  MODE: Testing only first {args.max_questions} questions")
-    if args.rerank_threshold != 0.15 or args.rag_top_k != 3 or args.rag_alpha != 0.8:
+    if args.rerank_threshold != 0.6 or args.rag_top_k != 3 or args.rag_alpha != 0.8:
         print(f"⚠️  RAG overrides: rerank_threshold={args.rerank_threshold}, rag_top_k={args.rag_top_k}, rag_alpha={args.rag_alpha}")
     print("="*80)
     
     # Paths
     if args.tsv_test:
         # Use TSV test files
-        test_path = Path(__file__).parent.parent / "Subtask3_input_test (1).tsv"
-        reference_path = Path(__file__).parent.parent / "Subtask3_output_test (2).tsv"
+        test_path = Path(__file__).parent / "Subtask3_input_test (1).tsv"
+        reference_path = Path(__file__).parent / "Subtask3_output_test (2).tsv"
         train_path = None  # No few-shot for TSV test
         
         if not test_path.exists():

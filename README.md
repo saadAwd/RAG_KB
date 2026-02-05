@@ -21,8 +21,7 @@ Use this workflow to reproduce and extend the evaluation with the **same system 
 
 - **Python 3.8+**
 - **GPU** recommended (faster); CPU works with `requirements.txt`. For GPU use `requirements_gpu.txt`.
-- **Test data**: `test.jsonl` in `RAG_KB/` (included), or TSV files in the parent folder for `--tsv-test`.
-- **Optional**: OpenAI API key for LLM-as-Judge evaluation (`llm_judge_evaluation.py`).
+- **Test data**: `test.jsonl` (included), or TSV files in this folder for `--tsv-test`: `Subtask3_input_test (1).tsv`, `Subtask3_output_test (2).tsv`.
 
 ### Step 1: Install dependencies
 
@@ -55,7 +54,7 @@ This runs all 4 configurations (Base Zero-shot, Base Few-shot, Fine-tuned Zero-s
 python model_comparison_bertscore.py
 ```
 
-- **Using TSV test/reference files** (in parent folder):
+- **Using TSV test/reference files** (in this folder):
 
   ```bash
   python model_comparison_bertscore.py --tsv-test
@@ -64,10 +63,10 @@ python model_comparison_bertscore.py
 - **Only Config 5 (RAG)** to re-run RAG with different parameters:
 
   ```bash
-  python model_comparison_bertscore.py --only-config5 --rerank-threshold 0.25
+  python model_comparison_bertscore.py --only-config5 --rerank-threshold 0.6
   ```
 
-- **RAG parameters** (defaults = same system as Config 5): `--rag-top-k 3`, `--rag-alpha 0.8`, `--rerank-threshold 0.15`.
+- **RAG parameters** (defaults = same system as Config 5): `--rag-top-k 3`, `--rag-alpha 0.8`, `--rerank-threshold 0.6`.
 
 ### Step 4: Run RAG diagnostics (optional)
 
@@ -79,37 +78,9 @@ python run_rag_diagnostics.py
 python run_rag_diagnostics.py --file comparison_results/model_comparison_results.json
 ```
 
-### Step 5: Run LLM-as-Judge evaluation (optional)
-
-Compare Fine-tuned (Config 3) vs Fine-tuned RAG (Config 5) using an external LLM judge. Requires `comparison_results/model_comparison_results.json` from Step 3.
-
-1. Set your API key (do **not** commit it):
-
-   ```bash
-   # Windows PowerShell
-   $env:OPENAI_API_KEY = "sk-..."
-
-   # Linux/macOS
-   export OPENAI_API_KEY="sk-..."
-   ```
-
-2. Run the judge (blind comparison by default):
-
-   ```bash
-   python llm_judge_evaluation.py --model gpt-4o-mini
-   ```
-
-   With reference answers shown to the judge:
-
-   ```bash
-   python llm_judge_evaluation.py --model gpt-4o-mini --include-reference
-   ```
-
-   Limit number of questions: `--max-examples 20`
-
 ### Reproducibility
 
-- **Same system as Config 5**: Use the RAG system prompt in `kb_retriever/generator.py` (`_build_rag_prompt`) and default RAG settings (`top_k=3`, `alpha=0.8`, `rerank_threshold=0.15`) so your results are comparable.
+- **Same system as Config 5**: Use the RAG system prompt in `kb_retriever/generator.py` (`_build_rag_prompt`) and default RAG settings (`top_k=3`, `alpha=0.8`, `rerank_threshold=0.6`) so your results are comparable.
 
 ---
 
@@ -283,7 +254,7 @@ All content is in Arabic and has been chunked and indexed for retrieval.
 - ✅ All Python code for retrieval system and **evaluation framework**
 - ✅ Pre-built chunks (`data/processed/kb_chunks.jsonl`)
 - ✅ Vector DB build script (`rebuild_vector_db.py`); pre-built `vector_db/` can be built or provided separately
-- ✅ **Model comparison** (`model_comparison_bertscore.py`), **RAG diagnostics** (`run_rag_diagnostics.py`), **LLM judge** (`llm_judge_evaluation.py`)
+- ✅ **Model comparison** (`model_comparison_bertscore.py`), **RAG diagnostics** (`run_rag_diagnostics.py`)
 - ✅ Fine-tuned model adapter (`Model/Allam7B-Physiology-RAG-finetuned-final`)
 - ✅ Gradio interface (`app.py`)
 - ✅ LangChain integration
