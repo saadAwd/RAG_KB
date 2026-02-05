@@ -293,7 +293,7 @@ If you encounter memory errors:
 
 ## 📄 License
 
-[Add your license information here]
+This project is licensed under the CC BY-NC 4.0 License. It is strictly for non-commercial research and educational use
 
 ## 👥 Credits
 
