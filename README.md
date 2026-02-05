@@ -13,8 +13,7 @@ This package provides a complete, working knowledge base retrieval system with:
 
 ---
 
-## 🧪 Running the Full Experiment (for colleagues)
-
+## 🧪 Running the Full Experiment
 Use this workflow to reproduce and extend the evaluation with the **same system as Config 5** (RAG system prompt + default parameters).
 
 ### Prerequisites
