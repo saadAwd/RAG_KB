@@ -1,0 +1,28 @@
+[Unit]
+Description=KB Retriever RAG System (Gradio App with Generator)
+After=network.target
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+WorkingDirectory=/home/YOUR_USERNAME/RAG_KB
+Environment="PATH=/home/YOUR_USERNAME/RAG_KB/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+# Optional: Set generator device (cpu or cuda)
+Environment="RAG_GENERATOR_DEVICE=cpu"
+# Optional: Enable 4-bit quantization to save memory
+Environment="RAG_GENERATOR_4BIT=false"
+# Optional: Set reranker threshold
+Environment="RAG_RERANKER_THRESHOLD=0.1"
+ExecStart=/home/YOUR_USERNAME/RAG_KB/venv/bin/python /home/YOUR_USERNAME/RAG_KB/app.py --server-name 0.0.0.0 --server-port 7860
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Memory limits (optional, adjust based on your VM)
+# MemoryMax=8G
+# MemoryHigh=6G
+
+[Install]
+WantedBy=multi-user.target

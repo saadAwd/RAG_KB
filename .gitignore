@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Models (will be downloaded on first run)
+models/
+*.bin
+# Note: Model/ directory is tracked (fine-tuned models)
+# *.safetensors  # Commented out to allow model files
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# --- Clean repo: generated outputs & local-only data ---
+comparison_results/
+data/processed/vector_db/
+
+# --- One-off / environment-specific scripts (not needed for RAG + evaluation) ---
+check_gpu.py
+check_gpu_hardware.sh
+check_gpu_setup.py
+check_manual_eval.py
+check_python_version.py
+check_and_fix_vector_db.py
+fix_bitsandbytes.sh
+fix_generator_syntax.sh
+fix_pytorch_cuda.ps1
+install_cuda_manual.ps1
+install_nvidia_drivers_debian.sh
+install_nvidia_drivers_gcp.sh
+install_pytorch_cuda*.ps1
+install_pytorch_latest.ps1
+setup_python311.ps1
+resolve_merge_conflict.sh
+analyze_prompt_results.py
+manual_evaluation.py
+test_generator_prompt.py
+test_prompt_variations.py
+verify_vector_db_cpu.py
+
+# --- Internal / troubleshooting docs (essential docs kept: README, MODEL_COMPARISON_README, etc.) ---
+CURRENT_PROBLEMS.md
+COPY_JSON_INSTRUCTIONS.md
+TROUBLESHOOTING_*.md
+FIX_*.md
+CLOUD_GPU_SETUP.md
+GGUF_*.md
+GOOGLE_CLOUD_*.md
+GPU_*.md
+INSTALL_*.md
+MEMORY_*.md
+NGINX_*.md
+ORACLE_*.md
+PROMPT_VARIATION_*.md
+SETUP_*.md
+SYSTEMD_*.md
+UPDATE_INSTRUCTIONS.md
+UPGRADED_*.md
+VERTEX_*.md
+BUILD_VECTOR_DB_GPU.sh
+
+# One-time cleanup script (run in clone then discard)
+clean_repo_and_update_readme.ps1

@@ -1,0 +1,48 @@
+# GPU-enabled requirements for KB Retriever deployment
+# Install PyTorch with CUDA FIRST using: install_pytorch_cuda.ps1
+# Then install remaining requirements: pip install -r requirements_gpu.txt
+
+# PyTorch with CUDA (install separately using install_pytorch_cuda.ps1)
+# torch>=2.0.0  # Install with: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# torchvision>=0.21.0  # Included in above command
+# torchaudio  # Included in above command
+
+# Core ML libraries
+transformers>=4.40.0
+datasets>=2.14.0
+scikit-learn>=1.3.0
+numpy>=1.24.0
+pandas>=2.0.0
+tqdm>=4.65.0
+
+# GPU acceleration libraries
+accelerate>=0.20.0
+bitsandbytes>=0.41.0          # Required for 4-bit quantization
+peft>=0.6.0                    # Required for LoRA fine-tuning
+
+# Evaluation
+evaluate>=0.4.0
+bert-score
+
+# Text processing
+sentence-transformers>=2.2.2
+sentencepiece>=0.1.99
+sacremoses>=0.0.53
+tokenizers>=0.15.0
+
+# Vector database and retrieval
+chromadb>=0.4.0
+rank-bm25>=0.2.2
+
+# LangChain
+langchain>=0.1.0
+langchain-core>=0.1.0
+pydantic>=2.0.0
+
+# UI
+gradio>=4.0.0
+
+# Utilities
+pyyaml>=6.0
+rich>=13.0.0
+protobuf>=3.20.0

@@ -1,0 +1,27 @@
+{
+  "model": "Allam-7B-Instruct-preview",
+  "quantization": "4-bit NF4",
+  "method": "QLoRA",
+  "specialization": "Physiology Expert with Safety Guardrails",
+  "language": "Arabic Only",
+  "training_samples": 593,
+  "validation_samples": 66,
+  "unique_samples": 659,
+  "original_samples": 1984,
+  "deduplication_ratio": 3.01062215477997,
+  "epochs_trained": 5,
+  "final_training_loss": 1.545498938309519,
+  "final_validation_loss": 1.330142617225647,
+  "perplexity": 3.781582667941188,
+  "timestamp": "2026-01-08T07:23:15.136790",
+  "features": [
+    "Deduplicated dataset (710 unique samples)",
+    "Physiology expert specialization",
+    "Safety guardrails for medical risks",
+    "Arabic language only",
+    "No personal information usage",
+    "No ambiguous marks or symbols",
+    "Complete and sound answers",
+    "RAG-optimized for context integration"
+  ]
+}
